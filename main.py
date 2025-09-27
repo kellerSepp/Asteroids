@@ -29,13 +29,15 @@ def main():
     player = Player(SCREEN_WIDTH / 2,SCREEN_HEIGHT / 2)
 
 
+    keys = pygame.key.get_pressed()
 
 
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return
+                return        
+
         screen.fill("black")
         
         updatable.update(dt)
@@ -45,6 +47,10 @@ def main():
             if asteroid.collision_check(player):
                 print("Game over!")
                 sys.exit()
+            for bullet in shots:
+                if asteroid.collision_check(bullet):
+                    asteroid.kill()
+        
         #player.update(dt)
         #player.draw(screen)
 
