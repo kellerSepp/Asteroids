@@ -49,7 +49,8 @@ def main():
                 sys.exit()
             for bullet in shots:
                 if asteroid.collision_check(bullet):
-                    asteroid.kill()
+                    asteroid.split()
+                    bullet.kill()
         
         #player.update(dt)
         #player.draw(screen)
