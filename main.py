@@ -1,3 +1,4 @@
+import sys
 import pygame
 from asteroid import Asteroid
 from constants import *
@@ -12,7 +13,7 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
-    
+
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
@@ -35,6 +36,10 @@ def main():
         updatable.update(dt)
         for obj in drawable:
             obj.draw(screen)
+        for asteroid in asteroids:
+            if asteroid.collision_check(player):
+                print("Game over!")
+                sys.exit()
         #player.update(dt)
         #player.draw(screen)
 
